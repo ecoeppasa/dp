@@ -87,9 +87,9 @@ public class AppConfig {
 		
 		BasicDataSource ds = new BasicDataSource();
                 ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost:3306/imdsocmed?zeroDateTimeBehavior=convertToNull");
-		ds.setUsername("root");
-                ds.setPassword("");
+		ds.setUrl("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12198329?zeroDateTimeBehavior=convertToNull");
+		ds.setUsername("sql12198329");
+                ds.setPassword("EnA3cRX7cc");
 		return ds;
 	}
 	
