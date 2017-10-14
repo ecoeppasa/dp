@@ -4,10 +4,9 @@ jdk:
     - oraclejdk8
 
 services:
-    - mysql
+    - mysql    
     
-    
-    after_success:
+after_success:
     - mvn jacoco:report coveralls:report
 
 
