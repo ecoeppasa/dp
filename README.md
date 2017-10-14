@@ -1,5 +1,7 @@
 ### API "Friend Management"
 
+[![Build Status](https://travis-ci.org/ecoeppasa/dp.svg?branch=master)](https://travis-ci.org/ecoeppasa/dp)
+[![Coverage Status](https://coveralls.io/repos/github/ecoeppasa/dp/badge.svg?branch=master)](https://coveralls.io/github/ecoeppasa/dp?branch=master)
 
 Security 
 
