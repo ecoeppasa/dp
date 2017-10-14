@@ -59,8 +59,7 @@ public class UserController {
     
      @Autowired
      UserDAO userDAO;
-    
-    
+     
      Validator validator;
      @GetMapping(value = "/")
      public String index(){

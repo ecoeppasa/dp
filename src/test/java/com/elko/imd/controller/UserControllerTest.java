@@ -66,7 +66,7 @@ public class UserControllerTest extends ImdApplicationTests{
     @Test
     public void testListFriend() throws Exception {
           MockHttpServletRequestBuilder builder =
-                                      MockMvcRequestBuilders.post("/api/isfriend/")
+                                      MockMvcRequestBuilders.post("/api/createfriend/")
                                         .header("Header",
                                                 "Value ")
                                         .content(createUserInJson("andy@example.com",
