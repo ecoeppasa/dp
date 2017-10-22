@@ -17,17 +17,21 @@ import com.elko.imd.model.User;
 import com.elko.imd.model.UserAction;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.GitProperties;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -59,7 +63,8 @@ public class UserController {
     
      @Autowired
      UserDAO userDAO;
-     
+     @Autowired private Environment environment;
+      @Autowired(required = false) private GitProperties gitProperties;
      Validator validator;
      @GetMapping(value = "/")
      public String index(){
@@ -440,5 +445,20 @@ public class UserController {
             return new ResponseEntity<NewsRecipient>(nr, HttpStatus.OK);
 
         }
+        
+        @GetMapping("/host")
+        public ResponseEntity<Map<String, Object>> hostInfo(HttpServletRequest request){
+        Map<String, Object> info = new TreeMap<>();
+        info.put("Hostname", request.getLocalName());
+        info.put("IP Address Local", request.getLocalAddr());
+        info.put("Port Local", request.getLocalPort());
+        info.put("Active Profiles", environment.getActiveProfiles());
+        if (gitProperties != null){
+            info.put("Git Branch", gitProperties.getBranch());
+            info.put("Git Commit ID", gitProperties.getShortCommitId());
+            info.put("Git Commit Time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(gitProperties.getCommitTime()));
+        }
+        return new ResponseEntity<Map<String, Object>>(info, HttpStatus.OK);
+}
     
 }
